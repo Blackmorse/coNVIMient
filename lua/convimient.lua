@@ -16,14 +16,13 @@ local function vim_keymap_set(modes, lhss, func, opts, buffers)
     local buffer_table = type(buffers) == "table" and buffers or { buffers }
     local lhss_table = type(lhss) == "table" and lhss or { lhss }
 
-    for _, lhs in ipairs(lhss_table) do
+    for _, lhs in pairs(lhss_table) do
         if #buffers == 0 then
             vim.keymap.set(modes, lhs, func, opts)
         else
-            for _, buffer in ipairs(buffer_table) do
-                print('doing smth')
+            for _, buffer in pairs(buffer_table) do
                 local opts_copy = {}
-                for k,v in ipairs(opts) do opts_copy[k] = v end
+                for k,v in pairs(opts) do opts_copy[k] = v end
                 opts_copy['buffer'] = buffer
                 vim.keymap.set(modes, lhs, func, opts_copy)
             end
@@ -31,6 +30,28 @@ local function vim_keymap_set(modes, lhss, func, opts, buffers)
     end
 end
 
+--- Expanding array of buffest for creating nvim autocommands
+---
+--- See https://neovim.io/doc/user/api.html#nvim_create_autocmd()
+---@param events table
+---@param opts table
+---@param buffers table | number
+local function vim_create_autocmd(events, opts, buffers)
+    buffers = buffers or {}
+    local buffer_table = type(buffers) == "table" and buffers or { buffers }
+    if #buffers == 0 then
+        vim.api.nvim_create_autocmd(events, opts)
+    else
+        for _, buffer in pairs(buffer_table) do
+            local opts_clone = {}
+            for k,v in pairs(opts) do opts_clone[k] = v end
+            opts_clone['buffer'] = buffer
+            vim.api.nvim_create_autocmd(events, opts_clone)
+        end
+    end
+end
+
 return {
-    vim_keymap_set = vim_keymap_set
+    vim_keymap_set = vim_keymap_set,
+    vim_create_autocmd = vim_create_autocmd
 }
