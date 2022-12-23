@@ -17,7 +17,7 @@ local function vim_keymap_set(modes, lhss, func, opts, buffers)
     local lhss_table = type(lhss) == "table" and lhss or { lhss }
 
     for _, lhs in pairs(lhss_table) do
-        if #buffers == 0 then
+        if #buffer_table == 0 then
             vim.keymap.set(modes, lhs, func, opts)
         else
             for _, buffer in pairs(buffer_table) do
