@@ -12,7 +12,7 @@ Yet another library for simplifying the usage of the <b>Lua Neovim API</b>.
 
 <b>packer</b>
 
-To install coNVIMient, add the following line to your <i>init</i> file:
+To install <b>coNVIMient</b>, add the following line to your <i>init</i> file:
 
 ```lua
 use({ "Blackmorse/coNVIMient.nvim" })
@@ -23,7 +23,7 @@ use({ "Blackmorse/coNVIMient.nvim" })
 coNVIMient offers the following functions:
 
 #### vim_keymap_set
-This function allows you to pass arrays of parameters to Neovim's nvim_create_autocmd function.
+This function allows you to pass arrays of parameters to Neovim's `nvim_create_autocmd` function.
 
 Here is an example of usage:
 ```lua
@@ -35,12 +35,12 @@ require('coNVIMient').vim_keymap_set(
 	{ buffer1, buffer2, 0 }) -- buffers
 ```
 
-Instead of iterating through tables for modes, lhs and 'buffers', you can pass them directly to the vim_keymap_set function. The parameters correspond to the original nvim_create_autocmd function, with the exception of the buffer opt which should be passed separately.
+Instead of iterating through tables for `modes`, `lhs` and `buffers`, you can pass them directly to the `vim_keymap_set` function. The parameters correspond to the original `nvim_create_autocmd` function, with the exception of the buffer opt which should be passed separately.
 
 For more information on `nvim_create_autocmd`, see the [Neovim API documentation](https://neovim.io/doc/user/api.html#nvim_create_autocmd())
 
 #### vim_create_autocmd
-This fuction allows you to create an autocmd in Neovim in the same manner, by expanding the arrays of passed buffers.
+This fuction allows you to create an <b>autocmd</b> in Neovim in the same manner, by expanding the arrays of passed buffers.
 
 Here is an example of usage:
 
@@ -51,6 +51,6 @@ require('coNVIMient').vim_create_autocmd(
         { buffer1, buffer2, 0 })  -- buffers
 ```
 
-The parameters correspond to the original nvim_create_autocmd function, with the exception of the `buffer` opt which should be passed separately.
+The parameters correspond to the original `nvim_create_autocmd` function, with the exception of the `buffer` opt which should be passed separately.
 
 For more information on `nvim_create_autocmd`, see the Neovim API documentation.
