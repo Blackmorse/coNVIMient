@@ -47,7 +47,7 @@ Here is an example of usage:
 ```lua
 require('coNVIMient').vim_create_autocmd(
         { 'BufWritePre', 'BufEnter' },  -- events
-        { nowait = true, noremap = true, silent = true, callback = function() print("Here is an autocmd") },  -- opts
+        { nowait = true, noremap = true, silent = true, callback = function() print("Here is an autocmd") end },  -- opts
         { buffer1, buffer2, 0 })  -- buffers
 ```
 
